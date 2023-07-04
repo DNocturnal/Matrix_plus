@@ -1,4 +1,4 @@
-GCC =  g++  -Wall -Werror -Wextra
+GCC =  g++ -Wall -Werror -Wextra
 SOURCE = matrix_oop.cc overloads.cc de_constructors.cc
 TEST = test.cc
 LIB = matrix_oop.a
@@ -21,7 +21,7 @@ test: test.cc
 	./test
 
 matrix_oop.a: clean
-	$(GCC) $(SOURCE)
+	$(GCC) -c $(SOURCE)
 	@ar rcs $(LIB) matrix_oop.o
 	@ranlib $(LIB)
 
