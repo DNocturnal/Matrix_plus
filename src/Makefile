@@ -21,7 +21,7 @@ test: test.cc
 	./test
 
 matrix_oop.a: clean
-	g++ -с $(SOURCE)
+	g++ -std=c++17 $(SOURCE)
 	@ar rcs $(LIB) matrix_oop.o
 	@ranlib $(LIB)
 
