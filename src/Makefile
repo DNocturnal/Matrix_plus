@@ -1,4 +1,4 @@
-
+GCC =  g++  -Wall -Werror -Wextra
 SOURCE = matrix_oop.cc overloads.cc de_constructors.cc
 TEST = test.cc
 LIB = matrix_oop.a
@@ -21,12 +21,12 @@ test: test.cc
 	./test
 
 matrix_oop.a: clean
-	g++ -std=c++17 $(SOURCE)
+	$(GCC) $(SOURCE)
 	@ar rcs $(LIB) matrix_oop.o
 	@ranlib $(LIB)
 
 gcov_report: matrix_oop.a
-	g++ $(GCOV) $(TEST) matrix_oop.h $(SOURCE) $(LIB)  $(LIBFLAGS) -o test
+	$(GCC) $(GCOV) $(TEST) matrix_oop.h $(SOURCE) $(LIB)  $(LIBFLAGS) -o test
 	./test
 	lcov -t "test" -c -d  ./ --no-external --output-file ./coverage.info
 	genhtml ./coverage.info --output-directory ./report/
@@ -35,7 +35,7 @@ check:
 	cppcheck --enable=all --suppress=missingIncludeSystem --inconclusive --check-config $(SOURCE) *.h
 	cp ../materials/linters/.clang-format .clang-format
 	clang-format -n matrix_oop.cc test.cc matrix_oop.h overloads.cc de_constructors.cc
-	g++ -std=c++17 $(SOURCE) test.cc $(LIBFLAGS) -o test 
+	$(GCC) -std=c++17 $(SOURCE) test.cc $(LIBFLAGS) -o test 
 	$(LEAKS)
 
 clean:
