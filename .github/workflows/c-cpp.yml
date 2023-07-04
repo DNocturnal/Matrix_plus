@@ -11,10 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    - name: install
+      run: sudo apt install g++ valgrind lcov libgtest-dev libgmock-dev gtest libtbb-dev clang-format 
     - name: lib
       run: cd src/; make matrix_oop.a
-    - name: install
-      run: sudo apt install check valgrind lcov libgtest-dev libgmock-dev gtest clang-format 
+    
   
   tests:
     runs-on: ubuntu-latest
