@@ -17,16 +17,16 @@ endif
 all: clean test check gcov_report
 
 test: test.cc
-	$(GXX)  -std=c++17 $(SOURCE) test.cc $(LIBFLAGS) -o test 
+	G++  -std=c++17 $(SOURCE) test.cc $(LIBFLAGS) -o test 
 	./test
 
 matrix_oop.a: clean
-	$(GXX)  $(SOURCE)
+	G++ -c  $(SOURCE)
 	@ar rcs $(LIB) matrix_oop.o
 	@ranlib $(LIB)
 
 gcov_report: matrix_oop.a
-	$(GXX) $(GCOV) $(TEST) matrix_oop.h $(SOURCE) $(LIB)  $(LIBFLAGS) -o test
+	G++ $(GCOV) $(TEST) matrix_oop.h $(SOURCE) $(LIB)  $(LIBFLAGS) -o test
 	./test
 	lcov -t "test" -c -d  ./ --no-external --output-file ./coverage.info
 	genhtml ./coverage.info --output-directory ./report/
@@ -35,7 +35,7 @@ check:
 	cppcheck --enable=all --suppress=missingIncludeSystem --inconclusive --check-config $(SOURCE) *.h
 	cp ../materials/linters/.clang-format .clang-format
 	clang-format -n matrix_oop.cc test.cc matrix_oop.h overloads.cc de_constructors.cc
-	$(GXX)  -std=c++17 $(SOURCE) test.cc $(LIBFLAGS) -o test 
+	G++  -std=c++17 $(SOURCE) test.cc $(LIBFLAGS) -o test 
 	$(LEAKS)
 
 clean:
