@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: install
-      run: sudo apt install g++ pkg-config valgrind cppcheck clang-format lcov libgtest-dev libgmock-dev libtbb-dev   
+      run: sudo apt install g++ pkg-config valgrind cppcheck clang-format lcov 
     - name: lib
       run: cd src/; make matrix_oop.a
     
@@ -23,7 +23,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: install
-      run: sudo apt install cppcheck
+      run: sudo apt install g++ pkg-config cppcheck libgtest-dev libgmock-dev libtbb-dev valgrind clang-format
     - name: linter
       run: cd src; make check
     - name: test
