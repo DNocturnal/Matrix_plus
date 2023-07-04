@@ -32,9 +32,9 @@ gcov_report: matrix_oop.a
 	genhtml ./coverage.info --output-directory ./report/
 
 check:
-	cppcheck --enable=all --suppress=missingIncludeSystem --inconclusive --check-config $(SOURCE) *.h
+	cppcheck --enable=all --suppress=missingIncludeSystem --inconclusive --check-config *.h matrix_oop.cc overloads.cc de_constructors.cc
 	cp ../materials/linters/.clang-format .clang-format
-	clang-format -n matrix_oop.cc test.cc matrix_oop.h overloads.cc de_constructors.cc
+	clang-format -n matrix_oop.cc test.cc matrix_oop.h overloads.cc de_constructors.cc 
 	$(GCC) -std=c++17 $(SOURCE) test.cc $(LIBFLAGS) -o test 
 	$(LEAKS)
 
