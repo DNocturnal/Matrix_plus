@@ -1,4 +1,4 @@
-#include "s21_matrix_oop.h"
+#include "matrix_oop.h"
 
 // Constructors & Destructors
 
